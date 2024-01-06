@@ -1,0 +1,18 @@
+services:
+  urlshortner:
+    image: "abdul12527/urlshortner:s4"
+    container_name: url_shortner
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+
+    environment:
+      - Mongo_Host=mongodb host name
+      - Mongo_Port=mongodb port number
+      - Mongo_db_name=mongodb db name
+      - Mongo_username=mongodb user name
+      - Mongo_pass=mongodb password
+

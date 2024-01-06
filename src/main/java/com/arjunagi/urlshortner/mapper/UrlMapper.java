@@ -7,7 +7,7 @@ import com.arjunagi.urlshortner.models.Url;
 public class UrlMapper {
     public static UrlResponseDto UrlToUrlResponseDto(Url url,UrlResponseDto urlResponseDto){
         urlResponseDto.setOriginalUrl(url.getOriginalUrl());
-        urlResponseDto.setShortUrl(url.getShortUrl());
+        urlResponseDto.setShortUrlCode(url.getShortUrl());
         urlResponseDto.setExpiryDate(url.getExpiryDate());
         return urlResponseDto;
     }
