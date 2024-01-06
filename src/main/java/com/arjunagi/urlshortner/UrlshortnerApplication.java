@@ -19,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 				)
 		),
 		servers = {
+				// this should point to your sever if reverse proxy is not setup in your sever you can just delete this feild or make it point localhost
 				@Server(url = "https://sus9.in")
 		}
 )
