@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Service
 public class DefaultUrlService implements IUrlServices {
     @Autowired
-    IUrlMongoRepo urlMongoRepo;
+    private IUrlMongoRepo urlMongoRepo;
     @Autowired
     private NextSequenceService nextSequenceService;
 
