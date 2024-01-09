@@ -1,6 +1,8 @@
+Certainly! Below is an extended and detailed README.md that provides more insight into the project, including deployment details:
+
 # URL Shortener Service
 
-This project provides APIs for creating, updating, and deleting short URLs. The service allows you to convert long and space-consuming URLs into short URLs and provides control over the URL expiry time.
+This URL Shortener service simplifies the process of generating, managing, and redirecting short URLs. It offers a RESTful API to create short URLs from long ones, retrieve URL details, update URLs, and delete them. The service is built using Spring Boot, MongoDB, and employs Swagger for API documentation.
 
 ## Table of Contents
 
@@ -11,39 +13,38 @@ This project provides APIs for creating, updating, and deleting short URLs. The 
 - [Exception Handling](#exception-handling)
 - [Service Details](#service-details)
 - [Docker Configuration](#docker-configuration)
+- [Deployment](#deployment)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Technologies Used
 
-- Spring Boot
-- MongoDB
-- Swagger (OpenAPI)
-- Lombok
-- Murmur3 32-bit hash
-- Jib Plugin for Docker Image
+The URL Shortener Service relies on the following technologies:
+
+- **Spring Boot:** A robust and flexible Java-based framework for building web applications.
+- **MongoDB:** A NoSQL database for storing URL records.
+- **Swagger (OpenAPI):** Used for API documentation, allowing developers to explore and understand the available endpoints.
+- **Lombok:** A library to simplify Java code by reducing boilerplate code.
+- **Murmur3 32-bit hash:** Used for encoding original URLs to generate short URL codes.
+- **Jib Plugin for Docker Image:** Simplifies the process of creating Docker images without a Dockerfile.
 
 ## Getting Started
 
-1. Clone the repository:
-
+1. **Clone the Repository:**
    ```bash
    git clone https://github.com/arjunagi-a-rehman/url-shortner.git
    cd url-shortner
    ```
 
-2. Build and run the application:
-
+2. **Build and Run the Application:**
    ```bash
    ./mvnw clean install
    ./mvnw spring-boot:run
    ```
-
    The application will start on [http://localhost:8080](http://localhost:8080).
 
-3. Access Swagger documentation:
-
-   Open [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) to explore and interact with the APIs using Swagger.
+3. **Explore Swagger Documentation:**
+   Open [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) to interact with the APIs using Swagger.
 
 ## API Documentation
 
@@ -123,20 +124,19 @@ This project provides APIs for creating, updating, and deleting short URLs. The 
 
 ## Project Structure
 
-The project follows a standard Spring Boot structure. Here are the key packages:
+The project adheres to the standard Spring Boot structure. Key packages include:
 
-- `com.arjunagi.urlshortner`: Main package
-  - `controller`: API controllers
-  - `dtos`: Data Transfer Objects
-  - `exceptions`: Custom exception classes
-  - `mapper`: Object mapping classes
-  - `models`: Entity classes
-  - `repository`: MongoDB repository interfaces
-  - `services`: Service interfaces and implementations
+- `com.arjunagi.urlshortner.controller`: API controllers
+- `com.arjunagi.urlshortner.dtos`: Data Transfer Objects
+- `com.arjunagi.urlshortner.exceptions`: Custom exception classes
+- `com.arjunagi.urlshortner.mapper`: Object mapping classes
+- `com.arjunagi.urlshortner.models`: Entity classes
+- `com.arjunagi.urlshortner.repository`: MongoDB repository interfaces
+- `com.arjunagi.urlshortner.services`: Service interfaces and implementations
 
 ## Exception Handling
 
-The project includes a global exception handler (`GlobalExceptionHandler`) to handle exceptions gracefully and return appropriate HTTP responses. Custom exceptions, such as `ExpiredUrlException` and `ResourceNotFoundException`, are used to represent specific error scenarios.
+The project includes a global exception handler (`GlobalExceptionHandler`) to gracefully handle exceptions and return appropriate HTTP responses. Custom exceptions, such as `ExpiredUrlException` and `ResourceNotFoundException`, represent specific error scenarios.
 
 ## Service Details
 
@@ -169,6 +169,10 @@ services:
       - Mongo_username=mongodb user name
       - Mongo_pass=mongodb password
 ```
+
+## Deployment
+
+The service is deployed at [https://sus9.in/swagger-ui/index.html#/](https://sus9.in/swagger-ui/index.html#/). The deployment on AWS EC2 involved setting up a reverse proxy using Nginx and obtaining an SSL certificate using Certbot.
 
 ## Contributing
 
