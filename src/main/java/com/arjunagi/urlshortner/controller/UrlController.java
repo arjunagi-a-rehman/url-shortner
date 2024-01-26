@@ -29,6 +29,7 @@ import java.io.IOException;
         name = "APIs to create update, and delete short URL",
         description = "The apis for creating short URL from the long url and perform the curl operation"
 )
+@CrossOrigin(origins = "*")
 public class UrlController { // dependencies are getting injected by constructor thanks to Lomboks @ AllArgConstructor
     IUrlServices urlServices;
     HttpServletResponse response; // for redirect operation
