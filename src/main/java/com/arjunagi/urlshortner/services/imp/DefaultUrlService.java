@@ -10,6 +10,7 @@ import com.arjunagi.urlshortner.repository.IUrlMongoRepo;
 import com.arjunagi.urlshortner.services.IUrlServices;
 import com.arjunagi.urlshortner.services.NextSequenceService;
 import com.google.common.hash.Hashing;
+import com.mongodb.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,13 @@ public class DefaultUrlService implements IUrlServices {
         url.setShortUrl(encodeUrl(urlRequestDto.getUrl()));
         url.setExpiryDate(getExpiryTime(urlRequestDto.getExpiryDate()));
         url.setCreatedAt(LocalDateTime.now());
-        urlMongoRepo.save(url);
+        try{
+            urlMongoRepo.save(url);
+        }catch (DuplicateKeyException duplicateKeyException){
+            url.setShortUrl(encodeUrl(urlRequestDto.getUrl()));
+            url.setCreatedAt(LocalDateTime.now());
+            urlMongoRepo.save(url);
+        }
         return UrlMapper.UrlToUrlResponseDto(url,new UrlResponseDto());
     }
 
@@ -85,7 +92,7 @@ public class DefaultUrlService implements IUrlServices {
 
     @Async
     public void asyncDelete(Url url){
-        urlMongoRepo.delete(url);
+        urlMongoRepo.delete(url); // if resource not found just won't delete anything
     }
 
     private LocalDateTime getExpiryTime(LocalDateTime dateTime){
@@ -99,7 +106,7 @@ public class DefaultUrlService implements IUrlServices {
     private String encodeUrl(String url) // encoding the original url to get short url code, the algo used is murmur3 32 byte encoding
     {
         String encodedUrl = "";
-        LocalDateTime time = LocalDateTime.now();
+        LocalDateTime time = LocalDateTime.now(); // to ensure the uniqueness
         encodedUrl = Hashing.murmur3_32_fixed()
                 .hashString(url.concat(time.toString()), StandardCharsets.UTF_8)
                 .toString();
