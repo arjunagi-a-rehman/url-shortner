@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Allow: /swagger-ui.html
+Allow: /actuator/health
+
+# Disallow analytics endpoints to prevent indexing of user data
+Disallow: /api/analytics/
+Disallow: /api/details/
+
+# Allow short URL redirects
+Allow: /s/
+
+# Sitemap location
+Sitemap: https://c0a1.in/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
