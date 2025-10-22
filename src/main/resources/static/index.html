@@ -1,194 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SuS9 - Free URL Shortener</title>
-  <meta name="description" content="Shorten your long URLs for free. Simple, fast, and reliable URL shortening service.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
-  <link rel="stylesheet" href="css/index.css">
-</head>
-<body>
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <div class="header-content">
-        <div class="logo">
-          <h1>SuS9</h1>
-          <span class="tagline">Free URL Shortener</span>
-        </div>
-        <nav class="nav">
-          <a href="#home" class="nav-link active">Home</a>
-          <a href="#features" class="nav-link">Features</a>
-          <a href="#analytics" class="nav-link">Analytics</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="main">
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>c0a1 - Free URL Shortener</title>
+    <meta
+      name="description"
+      content="Shorten your long URLs for free. Simple, fast, and reliable URL shortening service."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
       <div class="container">
-        <div class="hero-content">
-          <h2 class="hero-title">Shorten Your URLs</h2>
-          <p class="hero-subtitle">Make your long URLs short and easy to share</p>
-          
-          <!-- URL Shortener Form -->
-          <div class="shortener-form">
-            <div class="input-group">
-              <input 
-                type="url" 
-                id="urlInput" 
-                class="url-input" 
-                placeholder="Enter your long URL here..."
-                required
-              >
-              <button type="button" class="shorten-btn" onclick="shortenUrl()">
-                <span class="btn-text">Shorten URL</span>
-                <span class="btn-loading" style="display: none;">
-                  <span class="spinner"></span>
-                </span>
-              </button>
-            </div>
-            
-            <!-- Advanced Options -->
-            <div class="advanced-options">
-              <button type="button" class="options-toggle" onclick="toggleAdvanced()">
-                <span>⚙️ Advanced Options</span>
-              </button>
-              <div class="options-panel" id="advancedPanel" style="display: none;">
-                <div class="option-group">
-                  <label for="expiryInput">Expiry Date (Optional)</label>
-                  <input type="datetime-local" id="expiryInput" class="expiry-input">
-                  <small>Leave empty for 24-hour default</small>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Error Message -->
-            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        <div class="header-content">
+          <div class="logo">
+            <h1>c0a1</h1>
+            <span class="tagline">Free URL Shortener</span>
           </div>
-          
-          <!-- Result Section -->
-          <div id="resultSection" class="result-section" style="display: none;">
-            <div class="result-card">
-              <div class="result-header">
-                <h3>✅ Your shortened URL is ready!</h3>
-              </div>
-              <div class="result-content">
-                <div class="url-display">
-                  <input type="text" id="shortUrlResult" class="short-url-input" readonly>
-                  <button class="copy-btn" onclick="copyToClipboard()" title="Copy to clipboard">
-                    <span class="copy-icon">📋</span>
-                    <span class="copy-text">Copy</span>
-                  </button>
-                </div>
-                <div class="result-actions">
-                  <button class="action-btn" onclick="testUrl()">🔗 Test URL</button>
-                  <button class="action-btn" onclick="getAnalytics()">📊 View Analytics</button>
-                  <button class="action-btn secondary" onclick="resetForm()">🔄 Shorten Another</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <nav class="nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#analytics" class="nav-link">Analytics</a>
+          </nav>
         </div>
       </div>
-    </section>
+    </header>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-      <div class="container">
-        <h2 class="section-title">Why Choose SuS9?</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Lightning Fast</h3>
-            <p>Shorten URLs instantly with our optimized service</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🔒</div>
-            <h3>Secure & Reliable</h3>
-            <p>Your URLs are safe with enterprise-grade security</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>Analytics</h3>
-            <p>Track clicks and get insights about your audience</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">⏰</div>
-            <h3>Custom Expiry</h3>
-            <p>Set custom expiration dates for your URLs</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h2 class="hero-title">Shorten Your URLs</h2>
+            <p class="hero-subtitle">
+              Make your long URLs short and easy to share
+            </p>
 
-    <!-- Analytics Section -->
-    <section id="analytics" class="analytics">
-      <div class="container">
-        <h2 class="section-title">URL Analytics</h2>
-        <div class="analytics-form">
-          <div class="input-group">
-            <input 
-              type="url" 
-              id="analyticsInput" 
-              class="url-input" 
-              placeholder="Enter your short URL to view analytics..."
+            <!-- URL Shortener Form -->
+            <div class="shortener-form">
+              <div class="input-group">
+                <input
+                  type="url"
+                  id="urlInput"
+                  class="url-input"
+                  placeholder="Enter your long URL here..."
+                  required
+                />
+                <button
+                  type="button"
+                  class="shorten-btn"
+                  onclick="shortenUrl()"
+                >
+                  <span class="btn-text">Shorten URL</span>
+                  <span class="btn-loading" style="display: none">
+                    <span class="spinner"></span>
+                  </span>
+                </button>
+              </div>
+
+              <!-- Advanced Options -->
+              <div class="advanced-options">
+                <button
+                  type="button"
+                  class="options-toggle"
+                  onclick="toggleAdvanced()"
+                >
+                  <span>⚙️ Advanced Options</span>
+                </button>
+                <div
+                  class="options-panel"
+                  id="advancedPanel"
+                  style="display: none"
+                >
+                  <div class="option-group">
+                    <label for="expiryInput">Expiry Date (Optional)</label>
+                    <input
+                      type="datetime-local"
+                      id="expiryInput"
+                      class="expiry-input"
+                    />
+                    <small>Leave empty for 24-hour default</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error Message -->
+              <div
+                id="errorMessage"
+                class="error-message"
+                style="display: none"
+              ></div>
+            </div>
+
+            <!-- Result Section -->
+            <div
+              id="resultSection"
+              class="result-section"
+              style="display: none"
             >
-            <button type="button" class="analytics-btn" onclick="fetchAnalytics()">
-              Get Analytics
-            </button>
+              <div class="result-card">
+                <div class="result-header">
+                  <h3>✅ Your shortened URL is ready!</h3>
+                </div>
+                <div class="result-content">
+                  <div class="url-display">
+                    <input
+                      type="text"
+                      id="shortUrlResult"
+                      class="short-url-input"
+                      readonly
+                    />
+                    <button
+                      class="copy-btn"
+                      onclick="copyToClipboard()"
+                      title="Copy to clipboard"
+                    >
+                      <span class="copy-icon">📋</span>
+                      <span class="copy-text">Copy</span>
+                    </button>
+                  </div>
+                  <div class="result-actions">
+                    <button class="action-btn" onclick="testUrl()">
+                      🔗 Test URL
+                    </button>
+                    <button class="action-btn" onclick="getAnalytics()">
+                      📊 View Analytics
+                    </button>
+                    <button class="action-btn secondary" onclick="resetForm()">
+                      🔄 Shorten Another
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div id="analyticsError" class="error-message" style="display: none;"></div>
         </div>
-        
-        <!-- Analytics Results -->
-        <div id="analyticsResult" class="analytics-result" style="display: none;">
-          <div class="analytics-card">
-            <h3>URL Details</h3>
-            <div id="analyticsContent"></div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="features">
+        <div class="container">
+          <h2 class="section-title">Why Choose c0a1?</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Lightning Fast</h3>
+              <p>Shorten URLs instantly with our optimized service</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🔒</div>
+              <h3>Secure & Reliable</h3>
+              <p>Your URLs are safe with enterprise-grade security</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>Analytics</h3>
+              <p>Track clicks and get insights about your audience</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">⏰</div>
+              <h3>Custom Expiry</h3>
+              <p>Set custom expiration dates for your URLs</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>SuS9</h4>
-          <p>Free, fast, and reliable URL shortening service.</p>
-        </div>
-        <div class="footer-section">
-          <h4>Features</h4>
-          <ul>
-            <li>Free URL shortening</li>
-            <li>Custom expiry dates</li>
-            <li>Click analytics</li>
-            <li>No ads</li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Support</h4>
-          <ul>
-            <li>API Documentation</li>
-            <li>Contact Us</li>
-            <li>Privacy Policy</li>
-            <li>Terms of Service</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 SuS9. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+      <!-- Analytics Section -->
+      <section id="analytics" class="analytics">
+        <div class="container">
+          <h2 class="section-title">URL Analytics</h2>
+          <div class="analytics-form">
+            <div class="input-group">
+              <input
+                type="url"
+                id="analyticsInput"
+                class="url-input"
+                placeholder="Enter your short URL to view analytics..."
+              />
+              <button
+                type="button"
+                class="analytics-btn"
+                onclick="fetchAnalytics()"
+              >
+                Get Analytics
+              </button>
+            </div>
+            <div
+              id="analyticsError"
+              class="error-message"
+              style="display: none"
+            ></div>
+          </div>
 
-  <script src="js/index.js"></script>
-</body>
+          <!-- Analytics Results -->
+          <div
+            id="analyticsResult"
+            class="analytics-result"
+            style="display: none"
+          >
+            <div class="analytics-card">
+              <h3>URL Details</h3>
+              <div id="analyticsContent"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>c0a1</h4>
+            <p>Free, fast, and reliable URL shortening service.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Features</h4>
+            <ul>
+              <li>Free URL shortening</li>
+              <li>Custom expiry dates</li>
+              <li>Click analytics</li>
+              <li>No ads</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+              <li>API Documentation</li>
+              <li>Contact Us</li>
+              <li>Privacy Policy</li>
+              <li>Terms of Service</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 c0a1. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+  </body>
 </html>
