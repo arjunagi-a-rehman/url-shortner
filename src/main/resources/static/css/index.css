@@ -348,12 +348,16 @@ body {
   background: white;
 }
 
+.features .section-title {
+  color: #333; /* Dark text for white background */
+}
+
 .section-title {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 3rem;
-  color: #333;
+  color: #ffffff; /* High contrast white text for dark backgrounds */
 }
 
 .features-grid {
@@ -396,6 +400,10 @@ body {
 .analytics {
   padding: 4rem 0;
   background: #f8f9fa;
+}
+
+.analytics .section-title {
+  color: #333; /* Dark text for light background */
 }
 
 .analytics-form {
@@ -595,5 +603,104 @@ Works Section */
 
   .hero-title {
     font-size: 2.5rem !important;
+  }
+}
+/* How It Works Section */
+.how-it-works {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.how-it-works .section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: white;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.step-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 20px rgba(238, 90, 36, 0.3);
+}
+
+.step-card h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.step-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Responsive adjustments for How It Works */
+@media (max-width: 768px) {
+  .how-it-works {
+    padding: 60px 0;
+  }
+  
+  .how-it-works .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .step-card {
+    padding: 30px 20px;
+  }
+  
+  .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .step-card h4 {
+    font-size: 1.3rem;
   }
 }
