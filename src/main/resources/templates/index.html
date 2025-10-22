@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -364,7 +364,11 @@
           <div class="footer-section">
             <h3>Support</h3>
             <ul>
-              <li><a href="/swagger-ui/index.html" target="_blank">API Documentation</a></li>
+              <li>
+                <a href="/swagger-ui/index.html" target="_blank"
+                  >API Documentation</a
+                >
+              </li>
               <li><a href="mailto:me@arjunagiarehman.com">Contact Us</a></li>
               <li><a href="/privacy-policy.html">Privacy Policy</a></li>
               <li><a href="/terms-of-service.html">Terms of Service</a></li>
@@ -378,5 +382,12 @@
     </footer>
 
     <script src="js/index.js"></script>
+
+    <!-- Kalrav Chat Widget -->
+    <script th:if="${kalravApiKey != null and !#strings.isEmpty(kalravApiKey)}"
+            src="https://widget.kalrav.ai/routeye-widget.js"
+            data-agent-id="ASLMNTPXXXR"
+            th:attr="data-x-key=${kalravApiKey}"
+            data-primary-color="#4F46E5"></script>
   </body>
 </html>

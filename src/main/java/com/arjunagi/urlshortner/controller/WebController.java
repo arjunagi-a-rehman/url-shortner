@@ -1,25 +1,32 @@
 package com.arjunagi.urlshortner.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class WebController {
 
-    @GetMapping("/")
-    public String index() {
-        return "forward:/index.html";
-    }
+  @Value("${kalrav.api.key:}")
+  private String kalravApiKey;
 
-    @GetMapping("/home")
-    public String home() {
-        return "redirect:/";
-    }
+  @GetMapping("/")
+  public String index(Model model) {
+    model.addAttribute("kalravApiKey", kalravApiKey);
+    return "index";
+  }
 
-    // Handle SPA routing - redirect all non-API routes to index.html
-    @RequestMapping(value = {"/features", "/analytics", "/about"})
-    public String spa() {
-        return "forward:/index.html";
-    }
+  @GetMapping("/home")
+  public String home() {
+    return "redirect:/";
+  }
+
+  // Handle SPA routing - redirect all non-API routes to index.html
+  @RequestMapping(value = { "/features", "/analytics", "/about" })
+  public String spa(Model model) {
+    model.addAttribute("kalravApiKey", kalravApiKey);
+    return "index";
+  }
 }
