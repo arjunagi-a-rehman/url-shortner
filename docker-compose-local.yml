@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # URL Shortener Application
+  urlshortner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: url_shortner_local
+    restart: unless-stopped
+    ports:
+      - "9091:9091"
+    environment:
+      # MongoDB Atlas Connection
+      - Mongo_URI=mongodb+srv://abdul123arj_db_user:UupjsNKhEvE3UyPZ@shortner.1ymloi0.mongodb.net/urlshortner?retryWrites=true&w=majority&appName=shortner
+      
+      # Server Configuration
+      - SERVER_PORT=9091
+      
+      # Application Configuration
+      - LOCAL_DOMAIN=http://localhost:9091
+      - PRODUCTION_DOMAIN=http://localhost:9091
+      
+      # JVM Configuration for development
+      - JAVA_OPTS=-Xmx512m -Xms256m -Dspring.profiles.active=dev
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+        reservations:
+          memory: 256m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  default:
+    name: url_shortner_network

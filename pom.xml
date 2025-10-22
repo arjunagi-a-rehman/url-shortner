@@ -78,20 +78,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.google.cloud.tools</groupId>
-				<artifactId>jib-maven-plugin</artifactId>
-				<version>3.4.0</version>
-				<configuration>
-					<to>
-						<image>abdul12527/${project.artifactId}:s4</image>
-						<auth>
-							<username>abdul12527</username>
-							<password>dckr_pat_TL5WNYfH9pEVLUSfKVws3fBpQ50</password>
-						</auth>
-					</to>
-				</configuration>
-			</plugin>
+			<!-- Jib plugin configuration removed for security - configure externally if needed -->
 		</plugins>
 	</build>
 
