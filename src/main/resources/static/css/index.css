@@ -55,7 +55,7 @@ body {
 
 .nav-link {
   text-decoration: none;
-  color: #ffffff; /* High contrast white text */
+  color: #333; /* Dark text for white background */
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -64,8 +64,8 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-  color: #ffffff; /* High contrast white text */
-  background-color: #0056b3; /* Darker blue for better contrast */
+  color: #ffffff; /* White text on hover */
+  background-color: #007bff; /* Blue background for contrast */
 }
 
 /* Hero Section */
