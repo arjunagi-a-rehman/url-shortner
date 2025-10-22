@@ -12,7 +12,7 @@ services:
       - "9091:9091"
     environment:
       # MongoDB Atlas Connection
-      - Mongo_URI=mongodb+srv://abdul123arj_db_user:UupjsNKhEvE3UyPZ@shortner.1ymloi0.mongodb.net/urlshortner?retryWrites=true&w=majority&appName=shortner
+      - Mongo_URI=mongodb+srv
       
       # Server Configuration
       - SERVER_PORT=9091
