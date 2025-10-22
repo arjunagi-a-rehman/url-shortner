@@ -18,4 +18,16 @@
     <changefreq>daily</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://c0a1.in/privacy-policy.html</loc>
+    <lastmod>2024-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://c0a1.in/terms-of-service.html</loc>
+    <lastmod>2024-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
