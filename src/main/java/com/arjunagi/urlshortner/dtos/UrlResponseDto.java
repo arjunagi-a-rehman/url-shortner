@@ -30,4 +30,28 @@ public class UrlResponseDto {
             example = "2024-01-07T13:59:53"
     )
     private LocalDateTime expiryDate;
+    
+    @Schema(
+            description = "The date and time when the short URL was created",
+            example = "2024-01-07T10:30:00"
+    )
+    private LocalDateTime createdAt;
+    
+    @Schema(
+            description = "Total number of clicks on this URL",
+            example = "42"
+    )
+    private Long totalClicks;
+    
+    @Schema(
+            description = "Number of unique users who clicked this URL",
+            example = "28"
+    )
+    private Long uniqueClicks;
+    
+    @Schema(
+            description = "Last time this URL was clicked",
+            example = "2024-01-07T15:45:30"
+    )
+    private LocalDateTime lastClickedAt;
 }

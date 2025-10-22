@@ -22,25 +22,41 @@ This URL Shortener service simplifies the process of generating, managing, and r
 The URL Shortener Service relies on the following technologies:
 
 - **Spring Boot:** A robust and flexible Java-based framework for building web applications.
-- **MongoDB:** A NoSQL database for storing URL records.
+- **MongoDB:** A NoSQL database for storing URL records and analytics data.
 - **Swagger (OpenAPI):** Used for API documentation, allowing developers to explore and understand the available endpoints.
 - **Lombok:** A library to simplify Java code by reducing boilerplate code.
 - **Murmur3 32-bit hash:** Used for encoding original URLs to generate short URL codes.
 - **Jib Plugin for Docker Image:** Simplifies the process of creating Docker images without a Dockerfile.
+- **GeoIP Service:** Provides geographical location data for click analytics.
+
+## New Analytics Features ✨
+
+The service now includes comprehensive analytics tracking:
+
+- **Click Analytics:** Track total clicks, unique users, and click patterns
+- **Geographical Insights:** See where your links are being clicked from (country, region, city)
+- **User Behavior:** Monitor referrer sources and user agents
+- **Real-time Data:** Get up-to-date statistics on URL performance
+- **Historical Tracking:** View daily click statistics and trends
+
+For detailed information about analytics features, see [ANALYTICS_FEATURES.md](ANALYTICS_FEATURES.md).
 
 ## Getting Started
 
 1. **Clone the Repository:**
+
    ```bash
    git clone https://github.com/arjunagi-a-rehman/url-shortner.git
    cd url-shortner
    ```
 
 2. **Build and Run the Application:**
+
    ```bash
    ./mvnw clean install
    ./mvnw spring-boot:run
    ```
+
    The application will start on [http://localhost:8080](http://localhost:8080).
 
 3. **Explore Swagger Documentation:**
@@ -77,15 +93,51 @@ The URL Shortener Service relies on the following technologies:
 
 ### 3. Get URL Details
 
-**Endpoint:** `GET /details/{shortUrlCode}`
+**Endpoint:** `GET /api/details/{shortUrlCode}`
 
-- **Description:** Gets details regarding the short URL code.
+- **Description:** Gets details regarding the short URL code including analytics data.
 - **Response:**
   ```json
   {
     "originalUrl": "https://example.com",
-    "shortUrl": "https://sus9.in/abc123",
-    "expiryDate": "2023-12-31T23:59:59"
+    "shortUrlCode": "abc123",
+    "expiryDate": "2023-12-31T23:59:59",
+    "createdAt": "2023-12-01T10:30:00",
+    "totalClicks": 42,
+    "uniqueClicks": 28,
+    "lastClickedAt": "2023-12-30T15:45:30"
+  }
+  ```
+
+### 6. Get Analytics
+
+**Endpoint:** `GET /api/analytics/{shortUrlCode}`
+
+- **Description:** Gets comprehensive analytics for a short URL including geographical distribution and click patterns.
+- **Response:**
+  ```json
+  {
+    "shortUrlCode": "abc123",
+    "originalUrl": "https://example.com",
+    "totalClicks": 42,
+    "uniqueClicks": 28,
+    "clicksByCountry": {
+      "United States": 15,
+      "India": 12,
+      "United Kingdom": 8
+    },
+    "recentClicks": [
+      {
+        "country": "United States",
+        "region": "California",
+        "city": "San Francisco",
+        "clickedAt": "2023-12-30T15:45:30"
+      }
+    ],
+    "dailyClickStats": {
+      "2023-12-30": 15,
+      "2023-12-29": 12
+    }
   }
   ```
 

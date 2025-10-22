@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: url_shortner_mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-password123}
+      MONGO_INITDB_DATABASE: ${MONGO_DB_NAME:-urlshortner}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - url_shortner_network
+    ports:
+      - "27017:27017"
+
+  # URL Shortener Application
+  urlshortner:
+    image: "abdul12527/urlshortner:analytics-v1"
+    container_name: url_shortner_app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      # MongoDB Configuration
+      - Mongo_URI=mongodb://${MONGO_ROOT_USERNAME:-admin}:${MONGO_ROOT_PASSWORD:-password123}@mongodb:27017/${MONGO_DB_NAME:-urlshortner}?authSource=admin
+      
+      # Server Configuration
+      - SERVER_PORT=8080
+      
+      # Application Configuration
+      - LOCAL_DOMAIN=http://localhost:8080
+      - PRODUCTION_DOMAIN=${PRODUCTION_DOMAIN:-https://your-domain.com}
+      
+      # JVM Configuration
+      - JAVA_OPTS=-Xmx512m -Xms256m
+    depends_on:
+      - mongodb
+    networks:
+      - url_shortner_network
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+        reservations:
+          memory: 256m
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  url_shortner_network:
+    driver: bridge

@@ -37,6 +37,12 @@ public class DefaultUrlService implements IUrlServices {
         url.setShortUrl(encodeUrl(urlRequestDto.getUrl()));
         url.setExpiryDate(getExpiryTime(urlRequestDto.getExpiryDate()));
         url.setCreatedAt(LocalDateTime.now());
+        
+        // Initialize analytics fields
+        url.setTotalClicks(0L);
+        url.setUniqueClicks(0L);
+        url.setLastClickedAt(null);
+        
         try{
             urlMongoRepo.save(url);
         }catch (DuplicateKeyException duplicateKeyException){

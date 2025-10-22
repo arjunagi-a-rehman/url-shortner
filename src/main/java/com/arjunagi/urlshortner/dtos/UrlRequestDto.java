@@ -21,7 +21,8 @@ public class UrlRequestDto {
             description = "The long URL for which you want to generate short url",
             example = "https://github.com/arjunagi-a-rehman/url-shortner/tree/main/src/main/java/com/arjunagi/urlshortner"
     )
-    @Pattern(regexp = "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$")
+    @NotEmpty(message = "URL cannot be empty")
+    @Pattern(regexp = "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", message = "Invalid URL format")
     private String url;
     @Schema(
             description = "Expiry date you want to assign. note this is optional feild you can remove this from request in this case the expiry date will be 24hrs from creation",

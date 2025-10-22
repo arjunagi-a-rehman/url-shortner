@@ -17,4 +17,9 @@ public class Url {
     private String shortUrl;
     private LocalDateTime createdAt;
     private LocalDateTime expiryDate;
+    
+    // Analytics fields
+    private Long totalClicks = 0L;
+    private Long uniqueClicks = 0L;
+    private LocalDateTime lastClickedAt;
 }
