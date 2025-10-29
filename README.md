@@ -1,4 +1,3 @@
-Certainly! Below is an extended and detailed README.md that provides more insight into the project, including deployment details:
 
 # URL Shortener Service
 
