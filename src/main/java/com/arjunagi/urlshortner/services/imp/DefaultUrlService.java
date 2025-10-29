@@ -12,6 +12,9 @@ import com.arjunagi.urlshortner.services.NextSequenceService;
 import com.google.common.hash.Hashing;
 import com.mongodb.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +33,7 @@ public class DefaultUrlService implements IUrlServices {
      * @return response dto consist of original url, short code and expiry date
      */
     @Override
+    @CachePut(value = "urlCache", key = "#result.shortUrlCode")
     public UrlResponseDto generateShortUrl(UrlRequestDto urlRequestDto) {
         Url url=new Url();
         url.setId(String.valueOf(nextSequenceService.getNextSequence("customSequences")));
@@ -58,6 +62,7 @@ public class DefaultUrlService implements IUrlServices {
      * @return url response dto consists of original url,expiry date and short code
      */
     @Override
+    @Cacheable(value = "urlCache", key = "#shortUrl", unless = "#result == null")
     public UrlResponseDto getUrl(String shortUrl) {
         Url url=urlMongoRepo.findByShortUrl(shortUrl).orElseThrow(()->new ResourceNotFoundException("record","url",shortUrl));
         if(url.getExpiryDate().isBefore(LocalDateTime.now())) {
@@ -90,6 +95,7 @@ public class DefaultUrlService implements IUrlServices {
      * @return true if deleted successfully
      */
     @Override
+    @CacheEvict(value = "urlCache", key = "#shortUrl")
     public boolean deleteUrl(String shortUrl) {
         Url url=urlMongoRepo.findByShortUrl(shortUrl).orElseThrow(()->new ResourceNotFoundException("url","short url",shortUrl));
         urlMongoRepo.delete(url);
@@ -97,6 +103,7 @@ public class DefaultUrlService implements IUrlServices {
     }
 
     @Async
+    @CacheEvict(value = "urlCache", key = "#url.shortUrl")
     public void asyncDelete(Url url){
         urlMongoRepo.delete(url); // if resource not found just won't delete anything
     }

@@ -7,6 +7,7 @@ import com.arjunagi.urlshortner.dtos.UrlRequestDto;
 import com.arjunagi.urlshortner.dtos.UrlResponseDto;
 import com.arjunagi.urlshortner.services.IAnalyticsService;
 import com.arjunagi.urlshortner.services.IUrlServices;
+import com.arjunagi.urlshortner.services.RedirectService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -35,6 +36,7 @@ public class UrlController { // dependencies are getting injected by constructor
                              // AllArgConstructor
         IUrlServices urlServices;
         IAnalyticsService analyticsService;
+        RedirectService redirectService;
         HttpServletResponse response; // for redirect operation
 
         // Please refer to
@@ -66,14 +68,15 @@ public class UrlController { // dependencies are getting injected by constructor
         @GetMapping("/s/{shortUrlCode}")
         public void getOriginal(@PathVariable @NotEmpty String shortUrlCode, 
                                HttpServletRequest request) throws IOException {
-                UrlResponseDto urlResponseDto = urlServices.getUrl(shortUrlCode);
+                // Use cached redirect service for faster lookups
+                String originalUrl = redirectService.getOriginalUrl(shortUrlCode);
                 
-                // Track analytics - generate session ID for unique user tracking
+                // Track analytics asynchronously to avoid blocking redirect
                 HttpSession session = request.getSession(true);
                 String sessionId = session.getId();
                 analyticsService.recordClick(shortUrlCode, request, sessionId);
                 
-                response.sendRedirect(urlResponseDto.getOriginalUrl());
+                response.sendRedirect(originalUrl);
         }
 
         // ==========================================================================================================================

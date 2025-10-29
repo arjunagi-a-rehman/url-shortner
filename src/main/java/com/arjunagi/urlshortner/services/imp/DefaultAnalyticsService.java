@@ -12,6 +12,7 @@ import com.arjunagi.urlshortner.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +70,7 @@ public class DefaultAnalyticsService implements IAnalyticsService {
     }
     
     @Override
+    @Cacheable(value = "analyticsCache", key = "#shortUrlCode")
     public AnalyticsResponseDto getAnalytics(String shortUrlCode) {
         // Get URL info
         Url url = urlMongoRepo.findByShortUrl(shortUrlCode)
